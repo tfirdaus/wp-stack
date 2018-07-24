@@ -1,0 +1,37 @@
+language: bash
+services: docker
+
+branches:
+  except:
+  - master
+
+env:
+  - VARIANT=php5.4/apache
+  - VARIANT=php5.4/fpm
+  - VARIANT=php5.5/apache
+  - VARIANT=php5.5/fpm
+  - VARIANT=php5.6/apache
+  - VARIANT=php5.6/fpm
+  - VARIANT=php7.0/apache
+  - VARIANT=php7.0/fpm
+  - VARIANT=php7.1/apache
+  - VARIANT=php7.1/fpm
+  - VARIANT=php7.2/apache
+  - VARIANT=php7.2/fpm
+
+install:
+  - git clone https://github.com/docker-library/official-images.git ~/official-images
+
+before_script:
+  - env | sort
+  - cd "$VARIANT"
+  - slash='/'; tag="${VARIANT//$slash/-}"; image="tfirdaus/wp-stack:$tag"
+
+script:
+  - travis_retry docker build -t "$image" .
+
+after_script:
+  - docker images
+  - docker run "$image" /bin/sh -c "php -m | grep redis"
+
+# vim:set et ts=2 sw=2:
