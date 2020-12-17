@@ -1,4 +1,4 @@
-FROM tfirdaus/wp-docklines:php7.3-apache
+FROM tfirdaus/wp-docklines:php8.0-apache
 
 LABEL org.opencontainers.image.source https://github.com/tfirdaus/wp-stack
 

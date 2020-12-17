@@ -1,6 +1,6 @@
 FROM tfirdaus/wp-docklines:php7.4-fpm
 
-LABEL org.opencontainers.image.source https://github.com/OWNER/REPO
+LABEL org.opencontainers.image.source https://github.com/tfirdaus/wp-stack
 
 ENV REDIS_VERSION 5.3.2
 
